@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: "Upstream version to build (empty = newest patch of the last 3 minor lines)"
+        description: "Upstream version to build (empty = newest release)"
         required: false
       force:
         description: "Rebuild even if the image is up to date"
@@ -24,6 +24,8 @@ env:
   UPSTREAM_IMAGE: docker.io/jc21/nginx-proxy-manager
   IMAGE: ghcr.io/jaytalge/nginx-proxy-manager
   NODE_MAJOR: "26"
+  # only the newest minor line: upstream does not patch older lines, and they ship older node majors
+  WINDOW: "1"
   NODE_FLAVOR: trixie-slim
 
 jobs:

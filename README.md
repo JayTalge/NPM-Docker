@@ -8,7 +8,7 @@ The official [Nginx Proxy Manager](https://github.com/NginxProxyManager/nginx-pr
 
 ## Build
 
-- Every day at 02:27 UTC the workflow takes the newest patch of the **last 3 minor lines** up to the newest GitHub release of NPM.
+- Every day at 02:27 UTC the workflow builds the newest GitHub release (only the newest minor line: upstream does not patch older lines, and they ship older node majors) of NPM.
 - A version is rebuilt when it is new or when a newer node patch is out (label `de.jason-talge.build-key` = `<version>/node-<node>`).
 - Before pushing, the image is smoke-tested (API status `OK` on :81, nginx answers on :80, version from `/app/package.json`, node not older than the overlay).
 - To build manually, use Actions → "Build image from upstream release" → Run workflow. You can enter a specific version and choose "force". A manual version build also moves its `<minor>` tag.
